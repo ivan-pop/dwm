@@ -1,7 +1,7 @@
-#My dwm build
-#My changes
+# My dwm build
+# My changes
 dwm autostart looks in ~/.config/dwm for autostart scripts
-#Patches applied
+# Patches applied
 [dwm-alpha](https://dwm.suckless.org/patches/alpha)
 [dwm-autostart](https://dwm.suckless.org/patches/autostart/)
 [dwm-noborder](https://dwm.suckless.org/patches/noborder/)
