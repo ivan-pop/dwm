@@ -32,6 +32,7 @@
 #include <sys/wait.h>
 #include <X11/cursorfont.h>
 #include <X11/keysym.h>
+#include <X11/XF86keysym.h>
 #include <X11/Xatom.h>
 #include <X11/Xlib.h>
 #include <X11/Xproto.h>
@@ -1429,9 +1430,10 @@ run(void)
 }
 
 void
-runAutostart(void) {
+runAutostart(void)
+{
 	system("cd ~/.config/dwm; ./autostart_blocking.sh");
-	system("cd ~/.config/dwm; ./autostart.sh &");
+        system("cd ~/.config/dwm; ./autostart.sh &");
 }
 
 void

@@ -1,8 +1,6 @@
 /* See LICENSE file for copyright and license details. */
-#include <X11/XF86keysym.h>
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int snap      = 32;       /* snap pixel */
+static const unsigned int borderpx  = 1;        /* border pixel of windows */ static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int horizpadbar        = 2;        /* horizontal padding for statusbar */
@@ -75,6 +73,8 @@ static const char *volumedowm[] = { "amixer", "-q", "sset", "Master", "2%-", NUL
 static const char *volumemute[] = { "amixer", "-q", "sset", "Master", "toggle", NULL};
 static const char *volumerefresh[] = { "pkill", "-RTMIN+10", "dwmblocks", NULL };
 
+static const char *backlightup[] = { "xbacklight", "-inc", "5%", NULL };
+static const char *backlightdown[] = { "xbacklight", "-dec", "5%", NULL };
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_r,      spawn,          {.v = dmenucmd} },
@@ -87,6 +87,8 @@ static Key keys[] = {
         { 0,                            XF86XK_AudioLowerVolume, spawn, {.v = volumerefresh} },
         { 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = volumeup} },
         { 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = volumerefresh} },
+        { 0,                            XF86XK_MonBrightnessUp,  spawn, {.v = backlightup} },
+        { 0,                            XF86XK_MonBrightnessDown,spawn, {.v = backlightdown} },
         { MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
