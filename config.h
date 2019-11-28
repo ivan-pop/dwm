@@ -65,6 +65,8 @@ static const Layout layouts[] = {
 static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
 
+static const char *networkmanagerdmenu[] = { "networkmanager_dmenu", NULL};
+
 static const char *chromium[] = { "chromium", NULL};
 static const char *chromiumincognito[] = { "chromium", "--incognito", NULL};
 
@@ -75,9 +77,12 @@ static const char *volumerefresh[] = { "pkill", "-RTMIN+10", "dwmblocks", NULL }
 
 static const char *backlightup[] = { "xbacklight", "-inc", "5%", NULL };
 static const char *backlightdown[] = { "xbacklight", "-dec", "5%", NULL };
+
+static const char *lockscreen[] = { "lockscreen", NULL};
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_r,      spawn,          {.v = dmenucmd} },
+        { MODKEY,                       XK_n,      spawn,          {.v = networkmanagerdmenu} },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd} },
         { MODKEY,                       XK_w,      spawn,          {.v = chromium} },
         { MODKEY|ShiftMask,             XK_w,      spawn,          {.v = chromiumincognito} },
@@ -89,6 +94,7 @@ static Key keys[] = {
         { 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = volumerefresh} },
         { 0,                            XF86XK_MonBrightnessUp,  spawn, {.v = backlightup} },
         { 0,                            XF86XK_MonBrightnessDown,spawn, {.v = backlightdown} },
+        { MODKEY|ShiftMask,             XK_x,      spawn,          {.v = lockscreen} },
         { MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
