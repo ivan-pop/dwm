@@ -62,44 +62,15 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "st", NULL };
 
-static const char *networkmanagerdmenu[] = { "networkmanager_dmenu", NULL};
 
-static const char *chromium[] = { "chromium", NULL};
-static const char *chromiumincognito[] = { "chromium", "--incognito", NULL};
-
-static const char *volumeup[] = { "amixer", "-q", "sset", "Master", "2%+", NULL };
-static const char *volumedowm[] = { "amixer", "-q", "sset", "Master", "2%-", NULL };
-static const char *volumemute[] = { "amixer", "-q", "sset", "Master", "toggle", NULL};
-static const char *volumerefresh[] = { "pkill", "-RTMIN+10", "dwmblocks", NULL };
-
-static const char *backlightup[] = { "xbacklight", "-inc", "5%", NULL };
-static const char *backlightdown[] = { "xbacklight", "-dec", "5%", NULL };
-
-static const char *lockscreen[] = { "lockscreen", NULL};
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_r,      spawn,          {.v = dmenucmd} },
-        { MODKEY,                       XK_n,      spawn,          {.v = networkmanagerdmenu} },
-	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd} },
-        { MODKEY,                       XK_w,      spawn,          {.v = chromium} },
-        { MODKEY|ShiftMask,             XK_w,      spawn,          {.v = chromiumincognito} },
-        { 0,                            XF86XK_AudioMute, spawn, {.v = volumemute} },
-        { 0,                            XF86XK_AudioMute, spawn, {.v = volumerefresh} },
-        { 0,                            XF86XK_AudioLowerVolume, spawn, {.v = volumedowm} },
-        { 0,                            XF86XK_AudioLowerVolume, spawn, {.v = volumerefresh} },
-        { 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = volumeup} },
-        { 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = volumerefresh} },
-        { 0,                            XF86XK_MonBrightnessUp,  spawn, {.v = backlightup} },
-        { 0,                            XF86XK_MonBrightnessDown,spawn, {.v = backlightdown} },
-        { MODKEY|ShiftMask,             XK_x,      spawn,          {.v = lockscreen} },
         { MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
+	{ MODKEY,                       XK_o,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
@@ -138,7 +109,6 @@ static Button buttons[] = {
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
-	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
