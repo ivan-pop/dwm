@@ -11,3 +11,4 @@ dwm autostart looks in ~/.config/dwm for autostart scripts
 - [dwm-restartsig](https://dwm.suckless.org/patches/restartsig/)
 - [dwm-statuspadding](https://dwm.suckless.org/patches/statuspadding/)
 - [dwm-sticky](https://dwm.suckless.org/patches/sticky/)
+- [dwm-actualfullscreen](https://dwm.suckless.org/patches/actualfullscreen/)
