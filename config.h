@@ -1,6 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */ static const unsigned int snap      = 32;       /* snap pixel */
+static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int horizpadbar        = 2;        /* horizontal padding for statusbar */
@@ -33,7 +34,6 @@ static const Rule rules[] = {
      *	WM_NAME(STRING) = title
      */
     /* class      instance    title       tags mask     isfloating   monitor */
-    { "Chromium",  NULL,       NULL,        1,              0,           -1 },
     { "TelegramDesktop", NULL, NULL,        1 << 8,         0,           -1 },
     { "qBittorrent", NULL,     NULL,        1 << 7,         0,           -1 },
 };
@@ -41,7 +41,7 @@ static const Rule rules[] = {
 /* layout(s) */
 static const float mfact     = 0.5; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
+static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 
 static const Layout layouts[] = {
     /* symbol     arrange function */
@@ -61,8 +61,6 @@ static const Layout layouts[] = {
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
-/* commands */
-
 
 static Key keys[] = {
     /* modifier                     key        function        argument */
@@ -71,8 +69,8 @@ static Key keys[] = {
     { MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
     { MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
     { MODKEY,                       XK_o,      incnmaster,     {.i = -1 } },
-    { MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
-    { MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+    { MODKEY,                       XK_h,      setmfact,       {.f = -0.01} },
+    { MODKEY,                       XK_l,      setmfact,       {.f = +0.01} },
     { MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
     { MODKEY,                       XK_Tab,    view,           {0} },
     { MODKEY,                       XK_q,      killclient,     {0} },
