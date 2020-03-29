@@ -9,17 +9,34 @@ static const int horizpadbar        = 2;        /* horizontal padding for status
 static const int vertpadbar         = 3;        /* vertical padding for statusbar */
 static const char *fonts[]          = { "Liberation Sans:style=Regular:size=12",
                                         "JoyPixels:pizelsize:10:antialias=true:autohint=true",};
-static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
-static const unsigned int baralpha = 0xe5;
+/*
+    static const char col_gray1[]       = "#222222";
+    static const char col_gray2[]       = "#444444";
+    static const char col_gray3[]       = "#bbbbbb";
+    static const char col_gray4[]       = "#eeeeee";
+    static const char col_cyan[]        = "#005577";
+*/
+
+static const char col_gray1[]       = "#002b36";
+static const char col_gray2[]       = "#002b36";
+static const char col_gray3[]       = "#586e75";
+static const char col_gray4[]       = "#839496";
+static const char col_gray5[]       = "#93a1a1";
+static const char col_cyan[]        = "#073642";
+
+static const unsigned int baralpha = 0xef;
 static const unsigned int borderalpha = OPAQUE;
+/*
+    static const char *colors[][3]      = {
+	//               fg         bg         border   *
+	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
+	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+    };
+*/
 static const char *colors[][3]      = {
     /*               fg         bg         border   */
-    [SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-    [SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+    [SchemeNorm] = { col_gray4, col_gray1, col_cyan},
+    [SchemeSel]  = { col_gray5, col_cyan,  col_gray3  },
 };
 static const unsigned int alphas[][3]      = {
     /*               fg      bg        border     */
