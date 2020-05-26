@@ -24,8 +24,6 @@ static const char col_gray4[]       = "#839496";
 static const char col_gray5[]       = "#93a1a1";
 static const char col_cyan[]        = "#073642";
 
-static const unsigned int baralpha = 0xef;
-static const unsigned int borderalpha = OPAQUE;
 /*
     static const char *colors[][3]      = {
 	//               fg         bg         border   *
@@ -38,11 +36,6 @@ static const char *colors[][3]      = {
     [SchemeNorm] = { col_gray4, col_gray1, col_cyan},
     [SchemeSel]  = { col_gray5, col_cyan,  col_gray3  },
 };
-static const unsigned int alphas[][3]      = {
-    /*               fg      bg        border     */
-    [SchemeNorm] = { 0xff, baralpha, borderalpha },
-    [SchemeSel]  = { 0xff, baralpha, borderalpha },
-};
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
@@ -53,7 +46,6 @@ static const Rule rules[] = {
      */
     /* class      instance    title       tags mask     isfloating   monitor */
     { "TelegramDesktop", NULL, NULL,        1 << 8,         0,           -1 },
-    { "qBittorrent", NULL,     NULL,        1 << 7,         0,           -1 },
 };
 
 /* layout(s) */
@@ -114,7 +106,6 @@ static Key keys[] = {
     TAGKEYS(                        XK_8,                      7)
     TAGKEYS(                        XK_9,                      8)
     { MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-    { MODKEY,                       XK_F2,     quit,           {1} },
 };
 
 /* button definitions */
