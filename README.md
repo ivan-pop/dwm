@@ -2,7 +2,7 @@
 # Changes
 dwm autostart looks in ~/.config/dwm for autostart scripts
 # Patches applied
-- [dwm-autostart](https://dwm.suckless.org/patches/autostart/)
+- [dwm-cool-autostart](https://dwm.suckless.org/patches/cool_autostart/)
 - [dwm-noborder](https://dwm.suckless.org/patches/noborder/)
 - [dwm-nodmenu](https://dwm.suckless.org/patches/nodmenu/)
 - [dwm-pertag](https://dwm.suckless.org/patches/pertag/)

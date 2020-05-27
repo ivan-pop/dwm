@@ -195,7 +195,6 @@ static void resizeclient(Client *c, int x, int y, int w, int h);
 static void resizemouse(const Arg *arg);
 static void restack(Monitor *m);
 static void run(void);
-static void runAutostart(void);
 static void scan(void);
 static int sendevent(Client *c, Atom proto);
 static void sendmon(Client *c, Monitor *m);
@@ -243,6 +242,7 @@ static int xerror(Display *dpy, XErrorEvent *ee);
 static int xerrordummy(Display *dpy, XErrorEvent *ee);
 static int xerrorstart(Display *dpy, XErrorEvent *ee);
 static void zoom(const Arg *arg);
+static void autostart_exec();
 
 /* variables */
 static const char broken[] = "broken";
@@ -290,6 +290,23 @@ struct Pertag {
 
 /* compile-time check if all tags fit into an unsigned int bit array. */
 struct NumTags { char limitexceeded[LENGTH(tags) > 31 ? -1 : 1]; };
+
+/* dwm will keep pid's of processes from autostart array and kill them at quit */
+static pid_t *autostart_pids;
+static int autostart_len = LENGTH(autostart);
+
+/* execute command from autostart array */
+static void
+autostart_exec() {
+    autostart_pids = malloc((autostart_len + 1) * sizeof(pid_t));
+    for (int i = 0;i < autostart_len;i++) {
+        autostart_pids[i] = fork();
+        if (autostart_pids[i] == 0) {
+            setsid();
+            execvp(autostart[i][0], autostart[i]);
+        }
+    }
+}
 
 /* function implementations */
 void
@@ -1245,6 +1262,11 @@ propertynotify(XEvent *e)
 void
 quit(const Arg *arg)
 {
+    /* kill child processes */
+    for (int i = 0;i < autostart_len;i++) {
+        kill(autostart_pids[i], SIGTERM);
+        waitpid(autostart_pids[i], NULL, 0);
+    }
 	running = 0;
 }
 
@@ -1384,11 +1406,6 @@ run(void)
 			handler[ev.type](&ev); /* call handler */
 }
 
-
-void
-runAutostart(void) {
-	system("cd ~/.config/dwm; ./autostart.sh &");
-}
 
 void
 scan(void)
@@ -2252,13 +2269,13 @@ main(int argc, char *argv[])
 	if (!(dpy = XOpenDisplay(NULL)))
 		die("dwm: cannot open display");
 	checkotherwm();
+    autostart_exec();
 	setup();
 #ifdef __OpenBSD__
 	if (pledge("stdio rpath proc exec", NULL) == -1)
 		die("pledge");
 #endif /* __OpenBSD__ */
 	scan();
-	runAutostart();
 	run();
 	cleanup();
 	XCloseDisplay(dpy);

@@ -9,6 +9,10 @@ static const int horizpadbar        = 2;        /* horizontal padding for status
 static const int vertpadbar         = 3;        /* vertical padding for statusbar */
 static const char *fonts[]          = { "Liberation Sans:style=Regular:size=12",
                                         "JoyPixels:pizelsize:10:antialias=true:autohint=true",};
+
+static char* const autostart[][2] = { /* please replace 2 with maximum number of arguments from autostart array */
+    { "telegram-desktop", NULL },
+};
 /*
     static const char col_gray1[]       = "#222222";
     static const char col_gray2[]       = "#444444";
