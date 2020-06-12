@@ -10,4 +10,3 @@ dwm autostart looks in ~/.config/dwm for autostart scripts
 - [dwm-sticky](https://dwm.suckless.org/patches/sticky/)
 - [dwm-actualfullscreen](https://dwm.suckless.org/patches/actualfullscreen/)
 - [dwm-ewmhtags](https://dwm.suckless.org/patches/ewmhtags/)
-- [dwm-focusonclick](https://dwm.suckless.org/patches/focusonclick/)
