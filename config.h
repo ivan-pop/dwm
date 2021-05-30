@@ -68,44 +68,63 @@ static const Layout layouts[] = {
 { MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
 { MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
+#define TERMINAL "st"
+
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
-
+// helper for running command in terminal
+#define TCMD(cmd) SHCMD(TERMINAL " -e " cmd)
+// Run command and send kill signal to dwmblocks
+#define KCMD(cmd, signum) SHCMD(cmd "; pkill -RTMIN+" signum " dwmblocks" )
 
 static Key keys[] = {
     /* modifier                     key        function        argument */
   /*{ MODKEY,                       XK_b,      togglebar,      {0} },*/
-    { MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
-    { MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-    { MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
-    { MODKEY,                       XK_o,      incnmaster,     {.i = -1 } },
-    { MODKEY,                       XK_h,      setmfact,       {.f = -0.01} },
-    { MODKEY,                       XK_l,      setmfact,       {.f = +0.01} },
-    { MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
-    { MODKEY,                       XK_Tab,    view,           {0} },
-    { MODKEY,                       XK_q,      killclient,     {0} },
-    { MODKEY|ShiftMask,             XK_t,      setlayout,      {.v = &layouts[0]} },
-    { MODKEY|ShiftMask,             XK_space,  setlayout,      {.v = &layouts[1]} },
-    { MODKEY|ShiftMask,             XK_m,      setlayout,      {.v = &layouts[2]} },
-    { MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
-    { MODKEY|ShiftMask,             XK_f,      togglefullscr,  {0} },
-    { MODKEY,                       XK_s,      togglesticky,   {0} },
-    { MODKEY,                       XK_0,      view,           {.ui = ~0 } },
-    { MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
-  /*{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },*/
-  /*{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },*/
-  /*{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },*/
-  /*{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },*/
-    TAGKEYS(                        XK_1,                      0)
-    TAGKEYS(                        XK_2,                      1)
-    TAGKEYS(                        XK_3,                      2)
-    TAGKEYS(                        XK_4,                      3)
-    TAGKEYS(                        XK_5,                      4)
-    TAGKEYS(                        XK_6,                      5)
-    TAGKEYS(                        XK_7,                      6)
-    TAGKEYS(                        XK_8,                      7)
-    TAGKEYS(                        XK_9,                      8)
-    { MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+    { MODKEY,           XK_Return, spawn, SHCMD(TERMINAL)},
+    { MODKEY,           XK_w,      spawn, SHCMD("$BROWSER")},
+    { MODKEY,           XK_d,      spawn, SHCMD("dmenu_run")},
+    { MODKEY|ShiftMask, XK_d,      spawn, SHCMD("passmenu")},
+    { MODKEY,           XK_e,      spawn, SHCMD("emacsclient -cn -a ''") },
+    { MODKEY,           XK_p,      spawn, TCMD("ncmpcpp")},
+    {MODKEY,            XK_t,      spawn, TCMD("tremc")},
+    {MODKEY,            XK_n,      spawn, SHCMD("networkmanager_dmenu")},
+    {MODKEY|ShiftMask,  XK_x,      spawn, SHCMD("slock")},
+    {MODKEY|ShiftMask,  XK_t,      spawn, SHCMD("toggletouchpad")},
+
+    { MODKEY,           XK_j,      focusstack,     {.i = +1 } },
+    { MODKEY,           XK_k,      focusstack,     {.i = -1 } },
+    { MODKEY,           XK_i,      incnmaster,     {.i = +1 } },
+    { MODKEY,           XK_o,      incnmaster,     {.i = -1 } },
+    { MODKEY,           XK_h,      setmfact,       {.f = -0.01} },
+    { MODKEY,           XK_l,      setmfact,       {.f = +0.01} },
+    { MODKEY|ShiftMask, XK_Return, zoom,           {0} },
+    { MODKEY,           XK_Tab,    view,           {0} },
+    { MODKEY,           XK_q,      killclient,     {0} },
+    { MODKEY|ShiftMask, XK_t,      setlayout,      {.v = &layouts[0]} },
+    { MODKEY|ShiftMask, XK_space,  setlayout,      {.v = &layouts[1]} },
+    { MODKEY|ShiftMask, XK_m,      setlayout,      {.v = &layouts[2]} },
+    { MODKEY|ShiftMask, XK_space,  togglefloating, {0} },
+    { MODKEY|ShiftMask, XK_f,      togglefullscr,  {0} },
+    { MODKEY,           XK_s,      togglesticky,   {0} },
+    { MODKEY,           XK_0,      view,           {.ui = ~0 } },
+    { MODKEY|ShiftMask, XK_0,      tag,            {.ui = ~0 } },
+  /*{ MODKEY,           XK_comma,  focusmon,       {.i = -1 } },*/
+  /*{ MODKEY,           XK_period, focusmon,       {.i = +1 } },*/
+  /*{ MODKEY|ShiftMask, XK_comma,  tagmon,         {.i = -1 } },*/
+  /*{ MODKEY|ShiftMask, XK_period, tagmon,         {.i = +1 } },*/
+    {0,                 XK_Print,  spawn, SHCMD("makescreenshot fullscreen")},
+    {MODKEY,            XK_Print,  spawn, SHCMD("makescreenshot select")},
+    {0, XF86XK_AudioRaiseVolume, spawn, KCMD("pamixer -i 2", "10")},
+    {0, XF86XK_AudioLowerVolume, spawn, KCMD("pamixer -d 2", "10")},
+    {0, XF86XK_MonBrightnessUp,  spawn, SHCMD("xbacklight -steps 50 -time 150 -inc 5")},
+    {0, XF86XK_MonBrightnessDown,spawn, SHCMD("xbacklight -steps 50 -time 150 -dec 5")},
+
+    TAGKEYS(XK_1,       0)
+    TAGKEYS(XK_2,       1)
+    TAGKEYS(XK_3,       2)
+    TAGKEYS(XK_4,       3)
+    TAGKEYS(XK_5,       4)
+    { MODKEY|ShiftMask, XK_q,      quit,           {0} },
 };
 
 /* button definitions */
