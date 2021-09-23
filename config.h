@@ -6,10 +6,10 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int horizpadbar        = 2;        /* horizontal padding for statusbar */
 static const int vertpadbar         = 3;        /* vertical padding for statusbar */
-static const char *fonts[]          = { "Liberation Sans:style=Regular:size=14",
-                                        "JoyPixels:pizelsize:12:antialias=true:autohint=true",};
+static const char *fonts[]          = { "Liberation Sans:style=Regular:size=11",
+                                        "JoyPixels:pizelsize:10:antialias=true:autohint=true",};
 
-static char* const autostart[][2] = { /* please replace 2 with maximum number of arguments from autostart array */
+static char* const autostart[][1] = { /* replace 2 with maximum number of arguments in array */
     { "telegram-desktop", NULL },
 };
 
