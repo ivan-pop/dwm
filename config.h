@@ -9,11 +9,6 @@ static const int vertpadbar         = 3;        /* vertical padding for statusba
 static const char *fonts[]          = { "Liberation Sans:style=Regular:size=11",
                                         "JoyPixels:pizelsize:10:antialias=true:autohint=true",};
 
-static char* const autostart[][1] = { /* replace 2 with maximum number of arguments in array */
-  { "telegram-desktop", NULL },
-};
-
-
 /* Default colors */
 /*
   static const char col_gray1[]       = "#222222";
