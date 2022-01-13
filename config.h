@@ -2,7 +2,7 @@
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
-static const int showbar            = 1;        /* 0 means no bar */
+static const int showbar            = 0;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int horizpadbar        = 2;        /* horizontal padding for statusbar */
 static const int vertpadbar         = 3;        /* vertical padding for statusbar */
@@ -62,7 +62,6 @@ static const Layout layouts[] = {
 { MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
 { MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
 { MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
-
 #define TERMINAL "st"
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
@@ -80,11 +79,10 @@ static Key keys[] = {
   { MODKEY,           XK_d,      spawn,          SHCMD("dmenu_run")},
   { MODKEY|ShiftMask, XK_d,      spawn,          SHCMD("passmenu")},
   { MODKEY,           XK_e,      spawn,          SHCMD("emacsclient -cn -a ''") },
-  {MODKEY|ShiftMask,  XK_p,      spawn,          TCMD("ncmpcpp")},
-  /* {MODKEY,            XK_m,      spawn, TCMD("neomutt")}, */
-  {MODKEY|ShiftMask,  XK_n,      spawn,          SHCMD("networkmanager_dmenu")},
-  {MODKEY|ShiftMask,  XK_x,      spawn,          SHCMD("slock")},
-  {MODKEY|ShiftMask,  XK_t,      spawn,          SHCMD("toggletouchpad")},
+  { MODKEY|ShiftMask, XK_p,      spawn,          TCMD("ncmpcpp")},
+  { MODKEY|ShiftMask, XK_n,      spawn,          SHCMD("networkmanager_dmenu")},
+  { MODKEY|ShiftMask, XK_x,      spawn,          SHCMD("slock")},
+  { MODKEY|ShiftMask, XK_t,      spawn,          SHCMD("toggletouchpad")},
 
   { MODKEY,           XK_n,      focusstack,     {.i = +1 } },
   { MODKEY,           XK_p,      focusstack,     {.i = -1 } },
@@ -101,17 +99,18 @@ static Key keys[] = {
   { MODKEY|ShiftMask, XK_space,  togglefloating, {0} },
   { MODKEY|ShiftMask, XK_f,      togglefullscr,  {0} },
   { MODKEY,           XK_s,      togglesticky,   {0} },
-  /*{ MODKEY,           XK_comma,  focusmon,       {.i = -1 } },*/
-  /*{ MODKEY,           XK_period, focusmon,       {.i = +1 } },*/
-  /*{ MODKEY|ShiftMask, XK_comma,  tagmon,         {.i = -1 } },*/
-  /*{ MODKEY|ShiftMask, XK_period, tagmon,         {.i = +1 } },*/
-  {0,                 XK_Print,  spawn,          SHCMD("mkshot")},
-  {0, XF86XK_AudioRaiseVolume, spawn, KCMD("pamixer -i 2", "10")},
-  {0, XF86XK_AudioLowerVolume, spawn, KCMD("pamixer -d 2", "10")},
-  {0, XF86XK_MonBrightnessUp,  spawn, SHCMD("xbacklight -steps 50 -time 150 -inc 5")},
-  {0, XF86XK_MonBrightnessDown,spawn, SHCMD("xbacklight -steps 50 -time 150 -dec 5")},
+  { MODKEY,           XK_comma,  focusmon,       {.i = -1 } },
+  { MODKEY,           XK_period, focusmon,       {.i = +1 } },
+  { MODKEY|ShiftMask, XK_comma,  tagmon,         {.i = -1 } },
+  { MODKEY|ShiftMask, XK_period, tagmon,         {.i = +1 } },
+  /* Media keys */
+  { 0,                 XK_Print, spawn,          SHCMD("mkshot")},
+  { 0, XF86XK_AudioRaiseVolume, spawn, KCMD("pamixer -i 2", "10")},
+  { 0, XF86XK_AudioLowerVolume, spawn, KCMD("pamixer -d 2", "10")},
+  { 0, XF86XK_MonBrightnessUp,  spawn, SHCMD("xbacklight -steps 50 -time 150 -inc 5")},
+  { 0, XF86XK_MonBrightnessDown,spawn, SHCMD("xbacklight -steps 50 -time 150 -dec 5")},
   /* Toggle keyboard layout (Mapped as F13 in QMK) */
-  {0, XF86XK_Launch5,            spawn, KCMD("setlang", "11")},
+  { 0, XF86XK_Launch5,            spawn, KCMD("setlang", "11")},
 
   TAGKEYS(XK_1,       0)
   TAGKEYS(XK_2,       1)
