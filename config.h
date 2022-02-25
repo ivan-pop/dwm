@@ -106,7 +106,7 @@ static Key keys[] = {
   { MODKEY|ShiftMask, XK_comma,  tagmon,         {.i = -1 } },
   { MODKEY|ShiftMask, XK_period, tagmon,         {.i = +1 } },
   /* Media keys */
-  { 0,                 XK_Print, spawn,          SHCMD("mkshot")},
+  { 0,                 XK_Print, spawn,          SHCMD("scrshot")},
   { 0, XF86XK_AudioRaiseVolume, spawn, KCMD("pamixer -i 2", "10")},
   { 0, XF86XK_AudioLowerVolume, spawn, KCMD("pamixer -d 2", "10")},
   { 0, XF86XK_MonBrightnessUp,  spawn, SHCMD("xbacklight -steps 50 -time 150 -inc 5")},
